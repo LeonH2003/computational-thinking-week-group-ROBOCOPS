@@ -1,2 +1,8 @@
 def name():
     return "Klaudia"
+def act1():
+    return "I am Klaudia, a mermaiden of the Coraleo Sea-Kingbom, dwelling ’neath the briny deeps where corals rise as towers and pearls glister as stars of night. I drift through the waters with ease, my black hair flowing behind me as the moonlight slips down through the surface, breaking into silver light all around. The dolphins swim at my side in play, and the small fish sing their long, cheerful songs that echo through the vast halls of the sea, with my ocean dragon Lena."
+def act2():
+    return "It was a dark Wendnesday night, and while I was swimming near the coast looking for my favourite sushi stand, I saw a beauitful looking fruit bat. She was glistening in the sun moonlight and her wings were spread wide. I was mesmerized by her beauty and I swam closer to get a better look. Suddenly, she looked at me and smiled. I felt my heart skip a beat. Her name was Maliah and she was the most beautiful creature I had ever seen. She then transformed into a turtle and we sailed off into the distance of Coraleo."
+def act3():
+    return "The next week on a sunny Monday afternoon, I arrived to the coast of Lisbon and while I was listening to Will Smith on my streampods I met an electric eel named Ice! She was a glistening silver-purple colour that was just absolutely gorgeous. Her name was Ice and I found that she was a proud mother of twelce young children. I just love to meet people and add them to my army. I hope to expand it."

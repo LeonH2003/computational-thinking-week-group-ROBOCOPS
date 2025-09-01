@@ -3,7 +3,7 @@ def name():
 
 
 def act1():
-    return "I am a glitchy siren called iCE. You see me and you see me not. I live beneath foamy shores, in the depths of the Baltic sea. I can only say one thing: 'Follow the electric eel.' My best friend, a fruit bat, carries my message to and from the stars."
+    return "I am a glitchy siren called iCE. You see me and you see me not. I live beneath foamy shores, in the depths of the Baltic sea. I can only say one thing: 'Follow the electric eel.' My best friend, a fruit bat called Maliah, carries my message to and from the stars. Everyone from the witches of th"
 
 
 def act2():

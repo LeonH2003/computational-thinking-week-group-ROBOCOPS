@@ -1,7 +1,7 @@
 def name():
     return "Klaudia"
 def act1():
-    return "I am Klaudia, a mermaid of the Coraleo Sea-Kingbom, dwelling ’neath the briney deeps where corals rise as towers and pearls glister as stars of night. I drift through the waters with ease, my black hair flowing behind me as the moonlight slips down through the surface, breaking into silver light all around. The dolphins swim at my side in play, and the small fish sing their long, cheerful songs that echo through the vast halls of the sea, with my ocean dragon Lena."
+    return "I am Klaudia, a mermaid of the Coraleo Sea-Kingdom, dwelling ’neath the briney deeps where corals rise as towers and pearls glister as stars of night. I drift through the waters with ease, my black hair flowing behind me as the moonlight slips down through the surface, breaking into silver light all around. The dolphins swim at my side in play, and the small fish sing their long, cheerful songs that echo through the vast halls of the sea, with my ocean dragon Lena."
 def act2():
     return "It was a dark Wednesday night, and while I was swimming near the coast looking for my favourite sushi stand, I saw a beauitful looking fruit bat. She was glistening in the moonlight and her wings were spread wide. I was mesmerized by her beauty and I swam closer to get a better look. Suddenly, she looked at me and smiled. I felt my heart skip a beat. Her name was Maliah and she was the most beautiful creature I had ever seen. She then transformed into a turtle and we sailed off into the distance of Coraleo."
 def act3():

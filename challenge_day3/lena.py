@@ -1,7 +1,7 @@
 def name():
     return "Lena"
 def act1():
-    return "A mighty dragon and their cunning witch companion descend upon the city, the witch’s spells darkening the skies as the dragon’s wings shake the earth." 
+    return "A mighty dragon and their cunning witch companion descend upon the city, the witch’s spells darkening the skies as the dragon’s wings shake the earth. Taking a mermaid with me" 
 def act2():
     return "Together the witch and dragon are casting curses and illusions while the dragon breathes fire, turning the city into a playground of destruction."
 def act3():

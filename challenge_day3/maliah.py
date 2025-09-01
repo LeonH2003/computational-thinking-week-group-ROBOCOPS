@@ -5,4 +5,4 @@ def act1():
 def act2():
     return "Today i, the fruitbat, was putting my ear against the ocean and i heard a lot of electricity in the ocean... eek. i could not conclued anyting from this so i flew home. i heard from the other friut bats thta siren is now electric eel... how curious..." 
 def act3():
-    return "I, the friutbat, think that maybe fruit bats should evolve to be in the ocena and grow water parts so i can be freinds with the siren and the mermaid. We shall see."
+    return "I, the friutbat, think that maybe all fruit bats should evolve to be in the ocena and grow water parts so they can be freinds with the siren and the mermaid. We shall see."

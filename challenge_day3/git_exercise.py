@@ -11,7 +11,9 @@ group_intro()
 def group_bonus():
    for member in team_members:
       print(member.act1())
+    for member in team_members:
       print(member.act2())
+    for member in team_members:
       print(member.act3())
     
 group_bonus()

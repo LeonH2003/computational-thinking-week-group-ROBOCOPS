@@ -2,12 +2,13 @@ def name():
     return "Leon"
 
 def act1():
-    return "Hi, I am Leon a knight traveling to destroy a dragon and prove my honor. I hope to win the heart of a mermaid in the process."
+    return "Hi, I am Leon, a knight traveling a lonely path in the wild west of Estonia, seeking to destroy a dragon (Lena) and bring honor to my family. I hope to find love in the process; I've been weirdly into water creatures recently, I've met so many curious mermaids (Klaudia) and sirens (Kaisa) during my travels across the Baltic sea." \
+    "*thinking* There sure are many weird looking creatures buzzing about in this deep forest! Looks like some sort of rare fruit shaped bats (Maliah) maybe... Is that a hut in the distance? It's getting dark and I do need somewhere to sleep... I sure hope that nobody else lives in there! Imagine I saw a witch (Joana)! That would be too crazy to happen in real life for sure... *thinking ends*"
 
 
 
 def act2():
-    return "Knight finds the dragon and challenges it to duel. The dragon breathes fire and the knight raises his shield to block the flames. The dragon then swipes at the knight with its claws, but the knight dodges and strikes back with his sword."
+    return "Leon tries approaching the hut in the deep forest as the stars shine above him, but he notices a light on inside. Someone's home! Could it be a witch (Joana)? But wait!! He is covered by a cloud of darkness. The stars have disappeared from above him. He looks up and sees the underbelly of a great fire breathing dragon. The dragon lands next to him and introduces herself as the Scary-Silly Lena. He remembers his life goal of fighting a dragon and finds this one extremely stupid and thinks that he's gonna win in a duel for sureskies. He then challenges it to a duel. The dragon breathes fire and the knight raises his shield to block the flames. The dragon then swipes at the knight with its claws, but the knight dodges and strikes back with his sword. The both of them are lowkey doing an impressive job and the fruit bats of the forest (Maliah) spread the news of breaking the 420-year peace-treaty between human- and dragon-kind far and wide. The mermaids (Klaudia) and sirens (Kaisa) are especially excited about this and sense an uprising in the air, during which the battle is only getting more heated!"
 
 def act3():
-    return "the knight is burned alive. Like a roasted marshmallow by that stupid dragon"
+    return "The boss-battle between the knight and the dragon rages on for hours. By dawn they are both getting smoked by the sun and also each other. The fruit bats watch this with entertainment and are now profitting from the fight as they created a fruit betting system with the mermaids and sirens who are being kept in the loop of every single move in the fight through bat-radio-systems across the globe. Not a single soul has bet on the knight winning. Leon doesn't stand a chance and he knows it. The dragon breathes out one final flame and destiny is fulfilled: the knight is burned alive. Like a roasted marshmallow by that silly-stupid dragon. Nobody is surprised and the fruit market stocks skyrocket for the next 69 years."

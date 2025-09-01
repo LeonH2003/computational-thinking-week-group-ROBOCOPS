@@ -7,7 +7,7 @@ def act1():
 
 
 def act2():
-    return "Follow the white rabbit, iCE whispers to the wind. Maliah disperses the message with all her fruity might. (POWER TO THE GAYS!) The land and the seas grow alive with turmoil. The sky darkens, the seas rise. The world is changing."
+    return "Follow the white rabbit, iCE whispers to the wind. Maliah disperses the message with all her fruity might. (POWER TO THE GAYS!) The land and the seas grow alive with turmoil. The sky darkens, the seas rise. The world is changing. The witch and her dragon are after me. I need to be careful."
 
 
 def act3():

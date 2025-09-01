@@ -10,3 +10,6 @@ def group_intro():
     print(joana.name())
 
 group_intro()
+
+def group_bonus():
+    

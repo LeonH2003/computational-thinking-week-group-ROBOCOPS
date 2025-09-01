@@ -7,7 +7,7 @@ def act1():
 
 
 def act2():
-    return "I find the dragon and challenge it to duel"
+    return "Knight finds the dragon and challenges it to duel"
 
 def act3():
-    return "I am burned alive. Like a roasted marshmellow by that stupid dragon"
+    return "the knight is burned alive. Like a roasted marshmellow by that stupid dragon"

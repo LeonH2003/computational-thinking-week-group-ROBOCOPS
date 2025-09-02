@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def solution_station_4(num):
     if num < 2:
         return False
@@ -6,6 +5,3 @@ def solution_station_4(num):
         if num % i == 0:
             return False
     return True
-=======
-def solution_station_4(num):
->>>>>>> ba788208413770e609a2871cbb67f44e8a51b608

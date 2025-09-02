@@ -1,0 +1,1 @@
+def solution_station_2(num):

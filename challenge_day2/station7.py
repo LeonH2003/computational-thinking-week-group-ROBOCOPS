@@ -4,4 +4,5 @@ def solution_station_7(num):
     c=4
     d=7
     e=0.5
-    return float(eval(num))
+    result= float(eval(num))
+    return result

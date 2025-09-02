@@ -6,13 +6,16 @@ def group_intro():
     print('This is Team robocops. We are:')
     for member in team_members:
         print(member.name())
+    print()
 group_intro()
 
 def group_bonus():
-   for member in team_members:
+    for member in team_members:
       print(member.act1())
+    print()   
     for member in team_members:
       print(member.act2())
+    print()
     for member in team_members:
       print(member.act3())
     

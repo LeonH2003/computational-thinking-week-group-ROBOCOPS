@@ -9,15 +9,21 @@ def solution_station_5(name):
 
     # Check which team the name belongs to
     if name in lt1:
-        return 1
+        result = int(1)
+        return result
     elif name in lt2:
-        return 2
+        result = int(2)
+        return result
     elif name in lt3:
-        return 3
+        result = int(3)
+        return result
     elif name in lt4:
-        return 4
+        result = int(4)
+        return result
     elif name in lt5:
-        return 5
+        result = int(5)
+        return result
     elif name in lt6:
-        return 6
+        result = int(6)
+        return result
     

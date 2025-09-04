@@ -1,67 +1,62 @@
 use std::fs::File;
-use std::io::{self, BufRead};
+use std::io::{self, BufRead, BufReader, Write};
 use std::path::Path;
 use std::fs::OpenOptions;
-use std::io::Write;
 
 fn main() -> io::Result<()> {
-    let path = Path::new("data5.txt");
-    let file = File::open(&path)?;
-    let reader = io::BufReader::new(file);
-    
+    // Input and output paths
+    let input_path = Path::new("data5.txt");
+    let output_path = Path::new("data6.txt");
+
+    // Open input
+    let file = File::open(&input_path)?;
+    let reader = BufReader::new(file);
+
+    // Open output
     let mut output = OpenOptions::new()
         .write(true)
         .create(true)
-        .open("data6.txt")?;
-    
+        .truncate(true)  // clear existing file
+        .open(&output_path)?;
+
     for (indexing, line) in reader.lines().enumerate() {
         let line = line?;
-        
+        let mut parts: Vec<&str> = line.split(',').collect();
+
         if indexing == 0 {
-            // This is the header, add "Evaluation" to it and write to file
+            // Header: add Evaluation column
             writeln!(output, "{},Evaluation", line)?;
             continue;
         }
-        
-        let parts: Vec<&str> = line.split(',').collect();
-        if parts.len() < 7 {
-            continue; // Skip invalid lines
+
+        // Fill missing fields if any
+        while parts.len() < 7 {
+            parts.push("N/A");
         }
-        
+
+        // Calculate Evaluation from skills 1..5
         let mut total_score = 0;
         let mut num_skills = 0;
-        
         for &skill in &parts[1..=5] {
             match skill {
-                "low" => {
-                    total_score += 2;
-                    num_skills += 1;
-                },
-                "middle" => {
-                    total_score += 3;
-                    num_skills += 1;
-                },
-                "good" => {
-                    total_score += 4;
-                    num_skills += 1;
-                },
-                "super" => {
-                    total_score += 5;
-                    num_skills += 1;
-                },
-                _ => (), // Skip if it's something else
+                "low" => { total_score += 2; num_skills += 1; },
+                "middle" => { total_score += 3; num_skills += 1; },
+                "good" => { total_score += 4; num_skills += 1; },
+                "super" => { total_score += 5; num_skills += 1; },
+                _ => {},
             }
         }
-        
+
         let evaluation = if num_skills > 0 {
             (total_score as f32) / (num_skills as f32)
         } else {
-            0.0 // or whatever you want to set it to if no skills are evaluated
+            0.0
         };
-        
-        writeln!(output, "{},{},{}", line, parts[6], evaluation)?;
+
+        // Write original line + evaluation
+        writeln!(output, "{},{}", parts.join(","), evaluation)?;
     }
-    
+
+    println!("data6.txt created successfully!");
     Ok(())
 }
-

@@ -40,4 +40,4 @@ end
 CSV.write("data4.csv", people_df)
 
 # Save the modified DataFrame back to a new TXT file
-#writedlm("data4.txt", people_df, ',')
+writedlm("data4.txt", people_df, ',')

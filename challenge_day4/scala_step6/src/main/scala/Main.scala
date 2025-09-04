@@ -23,6 +23,6 @@ object Main {
         }
     }
 
-    Files.write(Paths.get("data7.txt"), output_each_Lines.mkString("\n").getBytes)
+    Files.write(Paths.get("data7.txt"), outputLines.mkString("\n").getBytes)
   }
 }

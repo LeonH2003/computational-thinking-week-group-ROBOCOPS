@@ -5,7 +5,7 @@ use std::fs::OpenOptions;
 use std::io::Write;
 
 fn main() -> io::Result<()> {
-    let path = Path::new("/Users/joanacaseiro/Desktop/Year 2/computational-thinking-week-group-ROBOCOPS/data5.txt");
+    let path = Path::new("data5.txt");
     let file = File::open(&path)?;
     let reader = io::BufReader::new(file);
     

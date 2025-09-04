@@ -23,7 +23,7 @@ type People struct {
 
 func main() {
 	// Read the JSON file
-	jsonFile, err := os.Open("data2.json")
+	jsonFile, err := os.Open("challenge_day4/fulldata/data1.json")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return

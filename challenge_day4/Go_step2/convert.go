@@ -4,10 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"math"
 	"os"
-	"strconv"
-	"strings"
 )
 
 type Person struct {
@@ -24,78 +21,63 @@ type People struct {
 }
 
 func main() {
+	// Input and output file paths
+	inputFile := "data2.json"
+	outputFile := "data3.csv"
+
 	// Read the JSON file
-	jsonBytes, err := os.ReadFile("data2.json")
+	jsonFile, err := os.Open(inputFile)
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Printf("Error opening JSON file: %v\n", err)
+		return
+	}
+	defer jsonFile.Close()
+
+	// Parse the JSON data
+	var people People
+	if err := json.NewDecoder(jsonFile).Decode(&people); err != nil {
+		fmt.Printf("Error decoding JSON: %v\n", err)
 		return
 	}
 
-	var people People
-	// Try object-with-people first
-	if err := json.Unmarshal(jsonBytes, &people); err != nil || len(people.People) == 0 {
-		// fallback: maybe it's a top-level array
-		var arr []Person
-		if err2 := json.Unmarshal(jsonBytes, &arr); err2 == nil {
-			people.People = arr
-		} else {
-			fmt.Println("Error parsing JSON:", err2)
-			return
-		}
-	}
-
-	// Create CSV
-	csvFile, err := os.Create("data3.csv")
+	// Create the CSV file
+	csvFile, err := os.Create(outputFile)
 	if err != nil {
-		fmt.Println("Error creating CSV:", err)
+		fmt.Printf("Error creating CSV file: %v\n", err)
 		return
 	}
 	defer csvFile.Close()
 
+	// Write the CSV header
 	writer := csv.NewWriter(csvFile)
+	defer writer.Flush()
 
-	// Write header
-	if err := writer.Write([]string{
-		"Name",
-		"Technical Skills",
-		"Soft Skills",
-		"Business Skills",
-		"Creative Skills",
-		"Academic Skills",
-	}); err != nil {
-		fmt.Println("Error writing header:", err)
+	header := []string{"Name", "Technical Skills", "Soft Skills", "Business Skills", "Creative Skills", "Academic Skills", "Average Skills"}
+	if err := writer.Write(header); err != nil {
+		fmt.Printf("Error writing CSV header: %v\n", err)
 		return
 	}
 
-	// Write rows
-	for _, p := range people.People {
+	// Write the data rows
+	for _, person := range people.People {
+		averageSkills := (person.TechnicalSkills + person.SoftSkills + person.BusinessSkills +
+			person.CreativeSkills + person.AcademicSkills) / 5.0
+
 		row := []string{
-			p.Name,
-			formatFloat(p.TechnicalSkills),
-			formatFloat(p.SoftSkills),
-			formatFloat(p.BusinessSkills),
-			formatFloat(p.CreativeSkills),
-			formatFloat(p.AcademicSkills),
+			person.Name,
+			fmt.Sprintf("%.2f", person.TechnicalSkills),
+			fmt.Sprintf("%.2f", person.SoftSkills),
+			fmt.Sprintf("%.2f", person.BusinessSkills),
+			fmt.Sprintf("%.2f", person.CreativeSkills),
+			fmt.Sprintf("%.2f", person.AcademicSkills),
+			fmt.Sprintf("%.2f", averageSkills),
 		}
+
 		if err := writer.Write(row); err != nil {
-			fmt.Println("Error writing row:", err)
+			fmt.Printf("Error writing CSV row: %v\n", err)
 			return
 		}
 	}
 
-	writer.Flush()
-	if err := writer.Error(); err != nil {
-		fmt.Println("Error flushing CSV:", err)
-	}
-	fmt.Println("data3.csv created successfully.")
-}
-
-// formatFloat makes sure numbers match expected test output
-func formatFloat(v float64) string {
-	// Round to 4 decimal places
-	r := math.Round(v*1e4) / 1e4
-	s := strconv.FormatFloat(r, 'f', 4, 64) // fixed 4 dp
-	s = strings.TrimRight(s, "0")           // remove trailing zeros
-	s = strings.TrimRight(s, ".")           // remove trailing dot if integer
-	return s
+	fmt.Printf("CSV file '%s' created successfully.\n", outputFile)
 }

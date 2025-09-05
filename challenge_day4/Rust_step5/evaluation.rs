@@ -4,59 +4,39 @@ use std::path::Path;
 use std::fs::OpenOptions;
 
 fn main() -> io::Result<()> {
-    // Input and output paths
-    let input_path = Path::new("challenge_day4/testdata/data5.txt");
-    let output_path = Path::new("challenge_day4/testdata/data6.txt");
+    let input_path = Path::new("data5.txt");
+    let output_path = Path::new("data6.txt");
 
-    // Open input
     let file = File::open(&input_path)?;
     let reader = BufReader::new(file);
 
-    // Open output
     let mut output = OpenOptions::new()
         .write(true)
         .create(true)
-        .truncate(true)  // clear existing file
+        .truncate(true)
         .open(&output_path)?;
 
-    for (indexing, line) in reader.lines().enumerate() {
+    for (i, line) in reader.lines().enumerate() {
         let line = line?;
-        let mut parts: Vec<&str> = line.split(',').collect();
 
-        if indexing == 0 {
-            // Header: add Evaluation column
+        if i == 0 {
+            // header: just append Evaluation
             writeln!(output, "{},Evaluation", line)?;
             continue;
         }
 
-        // Fill missing fields if any
-        while parts.len() < 7 {
-            parts.push("N/A");
-        }
+        // Split naively on commas (works if your input has no quoted commas)
+        // We will NOT write these parts back (to avoid injecting "N/A")
+        let parts: Vec<&str> = line.split(',').collect();
 
-        // Calculate Evaluation from skills 1..5
-        let mut total_score = 0;
-        let mut num_skills = 0;
-        for &skill in &parts[1..=5] {
-            match skill {
-                "low" => { total_score += 2; num_skills += 1; },
-                "middle" => { total_score += 3; num_skills += 1; },
-                "good" => { total_score += 4; num_skills += 1; },
-                "super" => { total_score += 5; num_skills += 1; },
-                _ => {},
-            }
-        }
-
-        let evaluation = if num_skills > 0 {
-            (total_score as f32) / (num_skills as f32)
-        } else {
-            0.0
-        };
-
-        // Write original line + evaluation
-        writeln!(output, "{},{}", parts.join(","), evaluation)?;
-    }
-
-    println!("data6.txt created successfully!");
-    Ok(())
-}
+        // Compute evaluation based on columns 1..=5 if present
+        let mut total = 0u32;
+        let mut n = 0u32;
+        for idx in 1..=5 {
+            if let Some(raw) = parts.get(idx) {
+                let skill = raw.trim().to_ascii_lowercase();
+                match skill.as_str() {
+                    "low" =>    { total += 2; n += 1; }
+                    "middle" => { total += 3; n += 1; }
+                    "good" =>   { total += 4; n += 1; }
+                    "super" =>  { total += 5; n += 1; }

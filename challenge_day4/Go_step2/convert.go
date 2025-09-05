@@ -23,7 +23,7 @@ type People struct {
 
 func main() {
 	// Read the JSON file
-	jsonFile, err := os.Open("data2.json")
+	jsonFile, err := os.Open("challenge_day4/testdata/data2.json")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -44,7 +44,7 @@ func main() {
 	}
 
 	// Create a CSV file
-	csvFile, err := os.Create("data3.csv")
+	csvFile, err := os.Create("challenge_day4/Testdatacompare/data3.csv")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return

@@ -5,8 +5,8 @@ use std::fs::OpenOptions;
 
 fn main() -> io::Result<()> {
     // Input and output paths
-    let input_path = Path::new("data5.txt");
-    let output_path = Path::new("data6.txt");
+    let input_path = Path::new("challenge_day4/testdata/data5.txt");
+    let output_path = Path::new("challenge_day4/testdata/data6.txt");
 
     // Open input
     let file = File::open(&input_path)?;

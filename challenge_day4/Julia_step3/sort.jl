@@ -1,7 +1,7 @@
 using DataFrames, CSV, Statistics, DelimitedFiles
 
 # Read CSV file into a DataFrame
-people_df = CSV.File("data3.csv") |> DataFrame
+people_df = CSV.File("challenge_day4/testdata/data3.csv") |> DataFrame
 
 # Function to classify a numeric score into skill level
 function classify_score(score, quartiles)
@@ -32,7 +32,7 @@ end
 CSV.write("data4.csv", people_df)
 
 # Save to TXT (comma-separated)
-open("data4.txt", "w") do io
+open("challenge_day4/Testdatacompare/data4.txt", "w") do io
     # Write header
     println(io, join(names(people_df), ","))
 

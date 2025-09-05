@@ -2,7 +2,7 @@ import java.nio.file.{Files, Paths}
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val filePath = "data6.txt"
+    val filePath = "challenge_day4/testdata/data6.txt"
     if (!Files.exists(Paths.get(filePath))) {
       println(s"Error: File $filePath does not exist.")
       return
@@ -32,7 +32,7 @@ object Main {
     }
 
     try {
-      Files.write(Paths.get("data7.txt"), outputLines.mkString("\n").getBytes)
+      Files.write(Paths.get("challenge_day4/Testdatacompare/data7.txt"), outputLines.mkString("\n").getBytes)
       println(s"data7.txt created successfully at ${Paths.get("data7.txt").toAbsolutePath}")
     } catch {
       case e: Exception =>

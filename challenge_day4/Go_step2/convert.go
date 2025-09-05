@@ -1,101 +1,84 @@
 package main
 
 import (
-	"encoding/csv"
-	"encoding/json"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-	"math"
+    "encoding/csv"
+    "encoding/json"
+    "fmt"
+    "os"
+    "strconv"
 )
 
 type Person struct {
-	Name            string  `json:"name"`
-	TechnicalSkills float64 `json:"Technical Skills"`
-	SoftSkills      float64 `json:"Soft Skills"`
-	BusinessSkills  float64 `json:"Business Skills"`
-	CreativeSkills  float64 `json:"Creative Skills"`
-	AcademicSkills  float64 `json:"Academic Skills"`
+    Name            string  `json:"name"`
+    TechnicalSkills float64 `json:"Technical Skills"`
+    SoftSkills      float64 `json:"Soft Skills"`
+    BusinessSkills  float64 `json:"Business Skills"`
+    CreativeSkills  float64 `json:"Creative Skills"`
+    AcademicSkills  float64 `json:"Academic Skills"`
 }
 
 type People struct {
-	People []Person `json:"people"`
+    People []Person `json:"people"`
 }
 
 func main() {
-	// Read the JSON file
-	jsonBytes, err := os.ReadFile("data2.json")
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+    // Input and output file paths
+    inputFile := "data2.json"
+    outputFile := "data3.csv"
 
-	var people People
-	// Try object-with-people first
-	if err := json.Unmarshal(jsonBytes, &people); err != nil || len(people.People) == 0 {
-		// fallback: maybe it's a top-level array
-		var arr []Person
-		if err2 := json.Unmarshal(jsonBytes, &arr); err2 == nil {
-			people.People = arr
-		} else {
-			fmt.Println("Error parsing JSON:", err2)
-			return
-		}
-	}
+    // Read the JSON file
+    jsonFile, err := os.Open(inputFile)
+    if err != nil {
+        fmt.Printf("Error opening JSON file: %v\n", err)
+        return
+    }
+    defer jsonFile.Close()
 
-	// Create CSV
-	csvFile, err := os.Create("data3.csv")
-	if err != nil {
-		fmt.Println("Error creating CSV:", err)
-		return
-	}
-	defer csvFile.Close()
+    // Parse the JSON data
+    var people People
+    if err := json.NewDecoder(jsonFile).Decode(&people); err != nil {
+        fmt.Printf("Error decoding JSON: %v\n", err)
+        return
+    }
 
-	writer := csv.NewWriter(csvFile)
+    // Create the CSV file
+    csvFile, err := os.Create(outputFile)
+    if err != nil {
+        fmt.Printf("Error creating CSV file: %v\n", err)
+        return
+    }
+    defer csvFile.Close()
 
-	// Write header
-	if err := writer.Write([]string{
-		"Name",
-		"Technical Skills",
-		"Soft Skills",
-		"Business Skills",
-		"Creative Skills",
-		"Academic Skills",
-	}); err != nil {
-		fmt.Println("Error writing header:", err)
-		return
-	}
+    // Write the CSV header
+    writer := csv.NewWriter(csvFile)
+    defer writer.Flush()
 
-	// Write rows
-	for _, p := range people.People {
-		row := []string{
-			p.Name,
-			formatFloat(p.TechnicalSkills),
-			formatFloat(p.SoftSkills),
-			formatFloat(p.BusinessSkills),
-			formatFloat(p.CreativeSkills),
-			formatFloat(p.AcademicSkills),
-		}
-		if err := writer.Write(row); err != nil {
-			fmt.Println("Error writing row:", err)
-			return
-		}
-	}
+    header := []string{"Name", "Technical Skills", "Soft Skills", "Business Skills", "Creative Skills", "Academic Skills", "Average Skills"}
+    if err := writer.Write(header); err != nil {
+        fmt.Printf("Error writing CSV header: %v\n", err)
+        return
+    }
 
-	writer.Flush()
-	if err := writer.Error(); err != nil {
-		fmt.Println("Error flushing CSV:", err)
-	}
-	fmt.Println("data3.csv created successfully.")
-}
+    // Write the data rows
+    for _, person := range people.People {
+        averageSkills := (person.TechnicalSkills + person.SoftSkills + person.BusinessSkills +
+            person.CreativeSkills + person.AcademicSkills) / 5.0
 
-// formatFloat makes sure numbers match expected test output
-func formatFloat(v float64) string {
-	// Round to 4 decimal places
-	r := math.Round(v*1e4) / 1e4
-	s := strconv.FormatFloat(r, 'f', 4, 64) // fixed 4 dp
-	s = strings.TrimRight(s, "0")           // remove trailing zeros
-	s = strings.TrimRight(s, ".")           // remove trailing dot if integer
-	return s
+        row := []string{
+            person.Name,
+            fmt.Sprintf("%.2f", person.TechnicalSkills),
+            fmt.Sprintf("%.2f", person.SoftSkills),
+            fmt.Sprintf("%.2f", person.BusinessSkills),
+            fmt.Sprintf("%.2f", person.CreativeSkills),
+            fmt.Sprintf("%.2f", person.AcademicSkills),
+            fmt.Sprintf("%.2f", averageSkills),
+        }
+
+        if err := writer.Write(row); err != nil {
+            fmt.Printf("Error writing CSV row: %v\n", err)
+            return
+        }
+    }
+
+    fmt.Printf("CSV file '%s' created successfully.\n", outputFile)
 }

@@ -2,3 +2,7 @@
 
 .scala-build*/
 .metals*/
+.bsp*/
+.metalsBackup*/
+.scala-buildBackup*/
+.vscode*/
